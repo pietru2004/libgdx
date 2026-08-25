@@ -221,7 +221,7 @@ public class ObjLoader extends ModelLoader<ObjLoader.ObjLoaderParameters> {
 			node.translation = new Vector3();
 			node.rotation = new Quaternion();
 
-			ArrayList<ModelNodePart> node_parts = new ArrayList<>();
+			ArrayList<ModelNodePart> nodeParts = new ArrayList<>();
 
 			for (String materialName : group.getMaterials()) {
 				Array<Integer> faces = group.getFaces(materialName);
@@ -268,7 +268,7 @@ public class ObjLoader extends ModelLoader<ObjLoader.ObjLoaderParameters> {
 				ModelNodePart pm = new ModelNodePart();
 				pm.meshPartId = partId + "_" + materialName;
 				pm.materialId = materialName;
-				node_parts.add(pm);
+				nodeParts.add(pm);
 				ModelMeshPart part = new ModelMeshPart();
 				part.id = partId + "_" + materialName;
 				part.indices = finalIndices;
@@ -282,7 +282,7 @@ public class ObjLoader extends ModelLoader<ObjLoader.ObjLoaderParameters> {
 				ModelMaterial mm = mtl.getMaterial(materialName);
 				if (!data.materials.contains(mm, false)) data.materials.add(mm);
 			}
-			node.parts = node_parts.toArray(new ModelNodePart[0]);
+			node.parts = nodeParts.toArray(new ModelNodePart[0]);
 			data.nodes.add(node);
 		}
 
